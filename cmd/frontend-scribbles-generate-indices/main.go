@@ -71,14 +71,14 @@ func main() {
 	}
 
 	knownDirs := map[string]struct{}{
-		"pages": struct{}{},
+		"docs":  struct{}{},
 		"js":    struct{}{},
 		"css":   struct{}{},
 		"trash": struct{}{},
 	}
 
 	// Gather indices
-	err := filepath.Walk("./pages", func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk("./docs", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -87,8 +87,8 @@ func main() {
 			return nil
 		}
 
-		dirPath := strings.TrimPrefix(path, "pages")
-		superPath := filepath.Dir(strings.TrimPrefix(path, "pages"))
+		dirPath := strings.TrimPrefix(path, "docs")
+		superPath := filepath.Dir(strings.TrimPrefix(path, "docs"))
 		if super, ok := indices[superPath]; ok {
 			newIndex := &index{
 				path: dirPath,
@@ -106,7 +106,7 @@ func main() {
 	}
 
 	// Output indices
-	err = filepath.Walk("./pages", func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk("./docs", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -119,7 +119,7 @@ func main() {
 			return filepath.SkipDir
 		}
 
-		dirPath := strings.TrimPrefix(path, "pages")
+		dirPath := strings.TrimPrefix(path, "docs")
 		if index, ok := indices[dirPath]; ok {
 			err := ioutil.WriteFile(filepath.Join(path, "index.html"), []byte(index.html(false)), 0644)
 			if err != nil {
@@ -134,7 +134,7 @@ func main() {
 	}
 
 	if index, ok := indices["/"]; ok {
-		err := ioutil.WriteFile(filepath.Join("./pages", "index.html"), []byte(index.html(true)), 0644)
+		err := ioutil.WriteFile(filepath.Join("./docs", "index.html"), []byte(index.html(true)), 0644)
 		if err != nil {
 			panic(err)
 		}
