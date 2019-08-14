@@ -33,7 +33,7 @@ func (x *index) html(isRoot bool) string {
 	middle := ""
 
 	if !isRoot {
-		middle += "<a href=\"/" + "\">/</a><br>"
+		middle += "<a href=\"/frontend-scribbles/\">/</a><br>"
 		middle += "<a href=\"../" + "\">../</a><br>"
 	}
 
@@ -52,7 +52,7 @@ func (x *index) list(level int) string {
 	middle := ""
 
 	for _, subIndex := range x.sub {
-		middle += "<li><a href=\"" + filepath.Join(subIndex.path, "index.html") + "\">" + subIndex.name + "</a>"
+		middle += "<li><a href=\"" + filepath.Join("/frontend-scribbles/", subIndex.path, "index.html") + "\">" + subIndex.name + "</a>"
 		middle += subIndex.list(level + 1)
 		middle += "</li>"
 	}
