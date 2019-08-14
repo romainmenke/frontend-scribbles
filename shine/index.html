@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<style>
+
+	body {
+		font-family: Helvetica;
+		background-color: #333;
+	}
+
+	#a {
+		width: 200px;
+		height: 200px;
+		background-color: hotpink;
+		margin-bottom: 10px;
+		border-radius: 10%;
+	}
+
+	.wrapper {
+		max-width: 700px;
+		margin: 100px auto;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.thing {
+		margin: 25px;
+		position: relative;
+		z-index: 10;
+		padding: 10px;;
+		box-sizing: border-box;
+		background: #111;
+		border-radius: 22px;
+		overflow: hidden;
+	}
+
+	.thing-bg {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: -1;
+		box-sizing: border-box;
+		min-width: 200%;
+		min-height: 200%;
+		padding-top: 200%;
+		border-radius: inherit;
+		transform: translate(-50%, -50%);
+		background: linear-gradient(to right, white, white 15%, black 70%, black);
+	}
+
+	.thing::after {
+		content: '';
+		position: absolute;
+		top: 2px; right: 2px; bottom: 2px; left: 2px;
+		z-index: 0;
+		border-radius: 20px;
+		background: #111;
+	}
+
+	.thing--1x {
+		width: 100px;
+		height: 100px;
+		flex-grow: 2;
+		flex-shrink: 0;
+	}
+
+	.thing--2x {
+		width: 200px;
+		height: 100px;
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	.thing--3x {
+		width: 300px;
+		height: 100px;
+		flex-grow: 0;
+		flex-shrink: 2;
+	}
+	</style>
+
+	<script src="./scroll-animator.js"></script>
+
+	<main>
+		<div class="wrapper">
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--3x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--2x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--3x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--2x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--3x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--2x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--3x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--2x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--3x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--2x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--3x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--2x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--3x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--2x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+			<div class="thing thing--1x">
+				<div class="thing-bg"></div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

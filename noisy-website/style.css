@@ -1,0 +1,113 @@
+body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	font-size: 18px;
+	background-color: #fff;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+	border-bottom: 1px dotted currentColor;
+}
+
+hr {
+	border: none;
+	overflow: visible;
+	text-align: center;
+	height: 5px;
+	padding: 10px 0;
+}
+
+hr:after {
+	content: '··········';
+	letter-spacing: 5px;
+	position: relative;
+	top: -9px;
+}
+
+.overlay {
+	background-repeat: no-repeat;
+	background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHhtbG5zOnhsaW5rPSdodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rJyB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCc+PGZpbHRlciBpZD0nbicgeD0nMCcgeT0nMCc+PGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9JzEuNScgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJyBmaWxsPScjODA4MDgwJy8+PHJlY3Qgd2lkdGg9JzMwMCcgaGVpZ2h0PSczMDAnIGZpbHRlcj0idXJsKCNuKSIgb3BhY2l0eT0nMScvPjwvc3ZnPg==');
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	pointer-events: none;
+	opacity: 1;
+	filter: grayscale(100%) !important;
+}
+
+.overlay--a {
+	mix-blend-mode: hard-light;
+}
+
+.overlay--b {
+	mix-blend-mode: overlay;
+}
+
+.underlay {
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background: linear-gradient(120deg, rgba(250,240,245,.9) 5%, rgba(255,245,255,.9) 35%);
+
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+
+.container {
+	z-index: 1;
+	position: relative;
+	min-height: 100vh;
+}
+
+.sg-wrapper {
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+
+.sg-wrapper > *:not(img):not(.overlay):not(.underlay) {
+	filter: blur(0.5px);
+}
+
+.sg-wrapper > img {
+	filter: grayscale(70%) blur(0.8px);
+}
+
+.nav {
+	padding: 30px 0;
+	text-align: right;
+}
+
+.nav a {
+	margin-left: 15px;
+}
+
+.active {
+	color: rgb(220, 30, 15);
+}
+
+img {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+img + img {
+	margin-left: 100px;
+}
