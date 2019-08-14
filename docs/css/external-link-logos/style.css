@@ -37,5 +37,4 @@ a[href^="//"]::after {
 	padding-right: 2px;
 	transform: translate(3px, -2px);
 	width: 12px;
-	filter: grayscale(1);
 }
