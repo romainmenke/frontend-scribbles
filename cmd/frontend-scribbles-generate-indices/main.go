@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -14,7 +13,7 @@ type index struct {
 	sub  []*index
 }
 
-func (x *index) html() string {
+func (x *index) html(isRoot bool) string {
 	start := `<!DOCTYPE html>
 	<html lang="en" dir="ltr">
 		<head>
@@ -31,7 +30,14 @@ func (x *index) html() string {
 	</html>
 `
 
-	middle := "<a href=\"/\">" + x.name + "</a>" + x.list(2)
+	middle := ""
+
+	if !isRoot {
+		middle += "<a href=\"/" + "\">/</a><br>"
+		middle += "<a href=\"../" + "\">../</a><br>"
+	}
+
+	middle += "<a href=\"." + strings.TrimSuffix(x.path, "/") + "/" + "\">" + x.name + "</a><br>" + x.list(2)
 
 	return start + middle + end
 }
@@ -46,7 +52,7 @@ func (x *index) list(level int) string {
 	middle := ""
 
 	for _, subIndex := range x.sub {
-		middle += "<li><a href\"" + strings.TrimSuffix(subIndex.path, "/") + "/" + "\">" + subIndex.name + "</a>"
+		middle += "<li><a href=\"." + strings.TrimSuffix(subIndex.path, "/") + "/" + "\">" + subIndex.name + "</a>"
 		middle += subIndex.list(level + 1)
 		middle += "</li>"
 	}
@@ -64,6 +70,13 @@ func main() {
 		"/": rootIndex,
 	}
 
+	knownDirs := map[string]struct{}{
+		"pages": struct{}{},
+		"js":    struct{}{},
+		"css":   struct{}{},
+		"trash": struct{}{},
+	}
+
 	// Gather indices
 	err := filepath.Walk("./pages", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -72,11 +85,6 @@ func main() {
 
 		if !info.IsDir() {
 			return nil
-		}
-
-		// Containing dir has an index.html
-		if _, err := os.Stat(filepath.Join(filepath.Dir(path), "index.html")); !os.IsNotExist(err) {
-			return filepath.SkipDir
 		}
 
 		dirPath := strings.TrimPrefix(path, "pages")
@@ -107,14 +115,13 @@ func main() {
 			return nil
 		}
 
-		// dir has an index.html
-		if _, err := os.Stat(filepath.Join(path, "index.html")); !os.IsNotExist(err) {
+		if _, ok := knownDirs[info.Name()]; !ok {
 			return filepath.SkipDir
 		}
 
 		dirPath := strings.TrimPrefix(path, "pages")
 		if index, ok := indices[dirPath]; ok {
-			err := ioutil.WriteFile(filepath.Join(path, "index-test.html"), []byte(index.html()), 0644)
+			err := ioutil.WriteFile(filepath.Join(path, "index.html"), []byte(index.html(false)), 0644)
 			if err != nil {
 				return err
 			}
@@ -127,11 +134,9 @@ func main() {
 	}
 
 	if index, ok := indices["/"]; ok {
-		err := ioutil.WriteFile(filepath.Join("./pages", "index-test.html"), []byte(index.html()), 0644)
+		err := ioutil.WriteFile(filepath.Join("./pages", "index.html"), []byte(index.html(true)), 0644)
 		if err != nil {
 			panic(err)
 		}
 	}
-
-	fmt.Printf("%+v", rootIndex)
 }
