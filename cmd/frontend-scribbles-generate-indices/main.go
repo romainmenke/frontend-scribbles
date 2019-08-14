@@ -21,21 +21,25 @@ func (x *index) html(isRoot bool) string {
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<title></title>
 
-			<link rel="stylesheet" href="/index-stylesheet.css">
+			<link rel="stylesheet" href="/frontend-scribbles/index-stylesheet.css">
 		</head>
 		<body>
 `
 
-	end := `</body>
+	end := `</div></body>
 	</html>
 `
 
 	middle := ""
 
 	if !isRoot {
+		middle += "<div class=\"home-and-back\">"
 		middle += "<a href=\"/frontend-scribbles/\">/</a><br>"
-		middle += "<a href=\"../" + "\">../</a><br>"
+		middle += "<a href=\"../" + "\">../</a>"
+		middle += "</div>"
 	}
+
+	middle += "<div class=\"wrapper\">"
 
 	middle += "<a href=\"./\">" + x.name + "</a><br>" + x.list(2)
 
