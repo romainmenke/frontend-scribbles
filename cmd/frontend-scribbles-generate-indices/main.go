@@ -52,7 +52,7 @@ func (x *index) list(level int) string {
 	middle := ""
 
 	for _, subIndex := range x.sub {
-		middle += "<li><a href=\"." + strings.TrimSuffix(subIndex.path, "/") + "/" + "\">" + subIndex.name + "</a>"
+		middle += "<li><a href=\"." + filepath.Join(subIndex.path, "index.html") + "\">" + subIndex.name + "</a>"
 		middle += subIndex.list(level + 1)
 		middle += "</li>"
 	}
