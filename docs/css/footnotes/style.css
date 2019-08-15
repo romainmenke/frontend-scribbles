@@ -1,0 +1,59 @@
+body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	font-size: 18px;
+	background-color: #fff;
+
+	counter-reset: footnote;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	color: #000;
+}
+
+.sg-wrapper {
+	max-width: 700px;
+	padding: 20px;
+	box-sizing: border-box;
+	margin: 0 auto;
+}
+
+a[href^="#footnote-"]::after {
+	color: blue;
+	content: '[' counter(footnote) ']';
+	counter-increment: footnote;
+	display: inline-block;
+	font-size: 0.8em;
+	padding-right: 5px;
+	transform: translate(3px, -5px);
+}
+
+.footnotes {
+	list-style: decimal;
+	color: blue;
+}
+
+a[href^="#ref-"] {
+	color: blue;
+	text-decoration: none;
+	font-size: 0.8em;
+	display: inline-block;
+	transform: translate(2px, -1px);
+}
+
+a[id^="footnote-"]:target {
+	background-color: magenta;
+}
+
+a[id^="ref-"]:target {
+	color: brown;
+}
