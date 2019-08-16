@@ -38,21 +38,12 @@ class ExternalLinkMeta extends HTMLAnchorElement {
 			metaData.theme_color = null;
 		}
 
-		if (metaData.image) {
-			this.innerHTML += `
-			<div class="external-link-meta" style="--elm-background_color: ${metaData.background_color || '#fff'}; --elm-theme_color: ${metaData.theme_color || '#000'};">
-				<div class="external-link-meta__image"><img src="${new URL(metaData.image, this.href).href}"></div>
-				<div class="external-link-meta__description"><p>${metaData.description}</p></div>
-			</div>
-			`;
-		} else {
-			this.innerHTML += `
-			<div class="external-link-meta" style="--elm-background_color: ${metaData.background_color || '#fff'}; --elm-theme_color: ${metaData.theme_color || '#000'};">
-				<div class="external-link-meta__description"><p>${metaData.description}</p></div>
-			</div>
-			`;
-		}
-
+		this.innerHTML += `
+		<div class="external-link-meta" style="--elm-background_color: ${metaData.background_color || '#fff'}; --elm-theme_color: ${metaData.theme_color || '#000'};">
+			<div class="external-link-meta__image"><img src="https://domain-meta-extractor.mysterious-mountain.stream/favicon/${this.sourceURL}"></div>
+			<div class="external-link-meta__description"><p>${metaData.description}</p></div>
+		</div>
+		`;
 	}
 }
 

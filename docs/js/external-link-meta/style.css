@@ -44,19 +44,19 @@ a {
 }
 
 .external-link-meta__image {
-	width: 100px;
-	height: 100px;
+	width: 32px;
+	height: 32px;
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
-	align-items:flex-start;
+	align-items: center;
 	flex-shrink: 0;
 	padding-right: 20px
 }
 
 .external-link-meta__image img {
-	max-height: 100px;
-	max-width: 100px;
+	height: 32px;
+	width: 32px;
 }
 
 .external-link-meta__description p {
