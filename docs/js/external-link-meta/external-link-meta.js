@@ -47,12 +47,18 @@ class ExternalLinkMeta extends HTMLAnchorElement {
 			left = 0;
 		}
 
+		// Todo : generate a vertical sharing card with :
+		// - title
+		// - image
+		// - description
+		// - author / domain + favicon logo
 		this.innerHTML += `
 		<div class="external-link-meta" style="left: ${left}px; --elm-background_color: ${metaData.background_color || '#fff'}; --elm-theme_color: ${metaData.theme_color || '#000'};">
-			<div class="external-link-meta__image"><img src="https://domain-meta-extractor.mysterious-mountain.stream/favicon/${this.sourceURL}"></div>
+			<div class="external-link-meta__image"><img src="${(new URL(metaData.image, this.href).href)}"></div>
 			<div class="external-link-meta__text">
-				<div class="external-link-meta__title">${metaData.title}</div>
-				<div class="external-link-meta__description">${metaData.description}</div>
+				<div class="external-link-meta__title">${metaData.title || ''}</div>
+				<div class="external-link-meta__description">${metaData.description || ''}</div>
+				<div class="external-link-meta__logo"><img src="https://domain-meta-extractor.mysterious-mountain.stream/favicon/${this.sourceURL}">${metaData.author || ''}</div>
 			</div>
 		</div>
 		`;
