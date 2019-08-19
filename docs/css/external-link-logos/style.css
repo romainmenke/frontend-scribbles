@@ -28,7 +28,7 @@ a {
 a[href^="https://"]::after,
 a[href^="http://"]::after,
 a[href^="//"]::after {
-	background-image: var(--background);
+	background-image: var(--after-background);
 	background-repeat: no-repeat;
 	background-size: contain;
 	content: '';
