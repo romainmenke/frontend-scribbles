@@ -6,7 +6,9 @@ class ExternalLinkMeta extends HTMLAnchorElement {
 	connectedCallback() {
 		this.api = 'https://domain-meta-extractor.mysterious-mountain.stream';
 
-		this.fetchData();
+		this.addEventListener('mouseover', () => {
+			this.fetchData();
+		}, { once: true });
 	}
 
 	async fetchData() {
