@@ -78,6 +78,7 @@ func main() {
 		"docs":  struct{}{},
 		"js":    struct{}{},
 		"css":   struct{}{},
+		"webgl": struct{}{},
 		"trash": struct{}{},
 	}
 
